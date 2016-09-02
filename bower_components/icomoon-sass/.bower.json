@@ -1,0 +1,39 @@
+{
+  "name": "icomoon-sass",
+  "version": "1.0.0",
+  "description": "icomoon-sass is a Sass version of Icomoon Font Icons, ready to drop right into your Sass projects.",
+  "authors": [
+    "Konstantin N. aka Lardjo"
+  ],
+  "main": [
+    "assets/scss/icomoon.scss",
+    "assets/fonts/icomoon.eot",
+    "assets/fonts/icomoon.svg",
+    "assets/fonts/icomoon.ttf",
+    "assets/fonts/icomoon.woff"
+  ],
+  "keywords": [
+    "icomoon",
+    "font",
+    "icons",
+    "sass"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Lardjo/icomoon-sass",
+  "ignore": [
+    ".gitignore",
+    "README.md",
+    "package.json",
+    "gulpfile.js"
+  ],
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "d8ad9acb664e664a08702e4f67eb88885c504065"
+  },
+  "_source": "https://github.com/Lardjo/icomoon-sass.git",
+  "_target": "^1.0.0",
+  "_originalSource": "icomoon-sass",
+  "_direct": true
+}
