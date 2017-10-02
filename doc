@@ -1,0 +1,19 @@
+methode for defining gloabs in html
+[1].
+-------------------------------------
+<!-- build:css styles/vendor.css -->
+<!-- bower:css -->
+
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/main.js -->
+<!-- inject:js -->
+
+<!-- endinject -->
+<!-- endbuild -->
+
+methode for defining gloabs in scss/less/sass
+// bower:scss
+
+// endbower

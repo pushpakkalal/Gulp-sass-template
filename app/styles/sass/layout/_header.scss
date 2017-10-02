@@ -1,0 +1,63 @@
+.header-section {
+	width: 100%;
+	background-color: #f1f1f1;
+
+	.main-navigation {
+		width: 100%;
+		position: relative;
+		top: 0;
+		left: 0;
+		background-color: #f1f1f1;
+		z-index: map-get($z-index, main-navigation);
+	}
+
+	.navbar-brand {
+		object {
+			pointer-events: none;
+		}
+	}
+
+	.navbar-brand.desktop-logo {
+		display: inline-block;
+		@include rem(width,182px);
+		@include rem(height,60px);
+		@include rem(padding,5px 15px);
+
+		object, img {
+			width: auto;
+			height: 100%;
+		}
+	}
+
+	.navbar-brand.fixed-logo {
+		display: none;
+		@include rem(width,182px);
+		@include rem(height,60px);
+		@include rem(padding,5px 15px);
+
+		object, img {
+			width: auto;
+			height: 100%;
+		}
+	}
+}
+
+.header-section.sticky {
+	@include rem(min-height,75px);
+
+	.main-navigation {
+		position: fixed;
+		z-index: map-get($z-index, stickyheader);
+		background-color: #f1f1f1; 
+		box-shadow: 0 6px 15px 0 rgba(0, 0, 0, 0.15);
+		@include transition(all 0.3s ease-in-out 0s);
+	}
+
+	.navbar-brand.desktop-logo {
+		display: none;
+	}
+
+	.navbar-brand.fixed-logo {
+		display: inline-block;
+	}
+}

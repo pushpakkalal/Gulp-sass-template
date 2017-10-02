@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:200,300,400,600,700,900');
+
+.link, a {
+  color: $default-anch-color;
+  text-decoration: none;
+  outline: medium none;
+  cursor: pointer;
+
+  &:visited {
+    color: #27AAE1;
+  }
+
+  &:hover, &:visited:hover {
+    color: #27AAE1;
+    text-decoration: underline;
+  }
+  &:focus { outline: medium none !important; }
+}
+
+//Typography
+.h1, .h2, .h3, .h4, .h5, .h6 { font-family: $base-font-family; font-weight: bold; }
+.h1, .h2 { line-height: 1.1; }
+.h3, .h4 { line-height: 1.3; }
+.h1 { font-size: 400%; letter-spacing: -2px; }
+.h2 { font-size: 250%; letter-spacing: -1px; }
+.h3 { font-size: 200%; }
+.h4 { font-size: 180%; }
+.h5 { font-size: 130%; }
+
+.bold { font-weight: bold; }
+.italic { font-style: $font-style-italic; }
+.normal { font-style: $font-style-normal; }
+.unordered-list { list-style:disc; }
+.ordered-list { list-style: decimal; }
+.fixed { font-family: $fixed-font-family; font-size: $fixed-font-size; line-height: $fixed-line-height; }
+.block-margins { margin: 1em 0 0.5em;}
+.typography {
+  i, em { @extend .italic; }
+  b, strong { @extend .bold; }
+
+  h1, .h1 { @extend .h1; margin: 1em 0 0.5em; }
+  h2, .h2 { @extend .h2; margin: 1em 0 0.5em; }
+  h3, .h3 { @extend .h3; margin: 1em 0 0.5em; }
+  h4, .h4 { @extend .h4; margin: 1em 0 0.5em; }
+  h5, .h5 { @extend .h5; margin: 1em 0 0.5em; }
+  h6, .h6 { @extend .h6; margin: 1em 0 0.5em; }
+
+  p, ul, ol, pre { @extend .block-margins; }
+
+  ul { @extend .unordered-list; }
+  ol { @extend .ordered-list; }
+  pre, code { @extend .fixed; }
+}

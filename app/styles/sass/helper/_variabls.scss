@@ -1,0 +1,57 @@
+$container-width: 1200px !important;
+
+/*
+* Typography
+*/
+// Font Sizes
+$base-font-size: 62.5%;
+
+// Sementic font weight varible
+$font-weight-exLight     : 200;
+$font-weight-Light       : 300;
+$font-weight-regular	 : 400;
+$font-weight-semi-bold	 : 600;
+$font-weight-bold	 	 : 700;
+$font-weight-black       : 900;
+
+
+// Sementic font style varible
+$font-style-italic: italic;
+$font-style-normal: normal;
+
+// base family varible
+$base-font-family : 'Muli', sans-serif;
+// fixed font varable
+$fixed-font-family: $base-font-family;
+$fixed-font-size: 1.4em;
+$fixed-line-height: 1.8em;
+
+/*
+Main color varaible
+*/
+$white      : #ffffff;
+$black      : #000000;
+
+// Background Colors varible
+$default-bg : $white;
+$bg-opt1    : $black;
+
+
+// normal text Colors variable
+$defaut-text-color	: $black;
+$text-color-opt2	: $white;
+
+
+// anchore color varible
+$default-anch-color : $black;;
+$anch-color-opt1	: $white;
+
+$z-index: (
+  header : 99,
+  footer : 99,
+  stickyCloseBtn: 99,
+  shineffect: 99,
+  hamburger:9999,
+  mainNavigation-section:999,
+  steps: 99,
+);

@@ -1,0 +1,757 @@
+//[1]. Responsive Breakpoints
+@mixin breakpoint($point) {
+  @if $point == xx-large { // 1170
+    @media (max-width: 73.125em) { @content; }
+  }
+  @else if $point == x-large { // 1024
+    @media (max-width: 64em) { @content; }
+  }
+  @else if $point == large { //992
+    @media (max-width: 62em)  { @content; }
+  }
+  @else if $point == medium { //800
+    @media (max-width: 50em)  { @content; }
+  }
+  @else if $point == small { //767
+    @media (max-width: 47.9375em)  { @content; }
+  }
+   @else if $point == smalll { //767
+    @media (min-width: 47.9375em)  { @content; }
+  }
+  @else if $point == x-small { //640
+    @media (max-width: 40em)  { @content; }
+  }
+  @else if $point == xx-small { //600
+      @media (max-width: 37.5em)  { @content; }
+  }
+  @else if $point == l-small { //479
+    @media (max-width: 29.9375em)  { @content; }
+  }
+  @else if $point == xl-small { //360
+    @media (max-width: 22.5em)  { @content; }
+  }
+  @else if $point == small-height { //480
+    @media (max-height: 22.5em)  { @content; }
+  }
+}
+// Usage:
+// .page-wrap {
+//   width: 75%;
+//   @include breakpoint(large) { width: 60%; }
+//   @include breakpoint(medium) { width: 80%; }
+//   @include breakpoint(small) { width: 95%; }
+// }
+
+// Output:
+// .page-wrap {
+//   width: 75%;
+// }
+// @media (min-width: 64.375em) {
+//   .page-wrap {
+//     width: 60%;
+//   }
+// }
+// @media (min-width: 50em) {
+//   .page-wrap {
+//     width: 80%;
+//   }
+// }
+// @media (min-width: 37.5em) {
+//   .page-wrap {
+//     width: 95%;
+//   }
+// }
+
+
+//[2]. Clearfix
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// Usage:
+// .article {
+//      @include clearfix();
+// }
+
+// Output:
+// .article {
+//   *zoom: 1;
+// }
+// .article:before, .article:after {
+//   content: "";
+//   display: table;
+// }
+// .article:after {
+//   clear: both;
+// }
+//===================================================================
+
+
+//[3] Box Sizing
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+// Usage:
+// *,
+// *:after,
+// *:before {
+//   @include box-sizing(border-box);
+// }
+
+// Output:
+// *,
+// *:after,
+// *:before {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+//===============================================================================================
+//[4]. Border Radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+// Usage:
+// .button {
+//   @include border-radius(5px);
+// }
+
+// Output:
+// .button {
+//   -webkit-border-radius: 5px;
+//   border-radius: 5px;
+//   background-clip: padding-box;
+//   /* stops bg color from leaking outside the border: */
+// }
+//=====================================================================
+
+//[5]. Single side border-radius
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+   -webkit-border-top-left-radius: $radius;
+   border-top-left-radius: $radius;
+   background-clip: padding-box;
+}
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+     -webkit-border-top-right-radius: $radius;
+     border-top-right-radius: $radius;
+     background-clip: padding-box;
+}
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+   -webkit-border-bottom-left-radius: $radius;
+   border-bottom-left-radius: $radius;
+   background-clip: padding-box;
+}
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+     -webkit-border-top-left-radius: $radius;
+     border-top-left-radius: $radius;
+     background-clip: padding-box;
+}
+
+// Usage:
+// .submit-button {
+//   @include border-top-radius(10px);
+//   @include border-right-radius(8px);
+//   @include border-bottom-radius(10px);
+//   @include border-left-radius (6px);
+// }
+
+// Output:
+// .submit-button {
+//   -webkit-border-top-right-radius: 10px;
+//   border-top-right-radius: 10px;
+//   -webkit-border-top-left-radius: 10px;
+//   border-top-left-radius: 10px;
+//   background-clip: padding-box;
+// }
+//===================================================================
+
+
+//[6]. Opacity
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Usage:
+// .article-heading {
+//   @include opacity(0.8);
+// }
+
+// Output:
+// .article-heading {
+//   opacity: 0.8;
+//   filter: alpha(opacity=0.8);
+// }
+//============================================================================
+
+//[7]. Center-align a block level element
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Usage:
+
+// .footer-wrap {
+//   width: 450px;
+//   @include center-block;
+// }
+
+// Output:
+
+// .footer-wrap {
+//   width: 450px;
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+//=============================================================================
+
+
+//[8]. Absolute Positioned
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+// Usage:
+
+// .abs {
+//   @include abs-pos(10px, 10px, 5px, 15px);
+// }
+
+// Output:
+
+// .abs {
+//   top: 10px;
+//   right: 10px;
+//   bottom: 5px;
+//   left: 15px;
+//   position: absolute;
+// }
+//===============================================================
+
+
+//[9]. text indent/ hide text mixins
+@mixin hide-text{
+    overflow:hidden;
+    text-indent:-9000px;
+    display:block;
+}
+
+// Usage
+// .logo{
+//     background: url("logo.png");
+//     height:100px;
+//     width:200px;
+//     @include hide-text;
+// }
+//============================================================
+
+//[10]. text truncate mixins
+@mixin text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: text-truncate;
+}
+// Usage
+// .input[type="text"]{
+//     @include text-truncate;
+// }
+
+// Output:
+
+// .text-truncate {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
+
+//[11]. Font Size
+// This mixin sets the font size in rem's with a px fallback.
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+// Usage:
+
+// body {
+//    @include font-size(1.6);
+// }
+
+
+
+//[12]. Line Height
+// This mixin sets the line height in rem's with a px fallback.
+@mixin line-height($heightValue: 1.6) {
+  line-height: ($heightValue * 10) + px;
+  line-height: $heightValue + rem;
+}
+
+// Usage:
+// body {
+//   @include line-height (2.1);
+// }
+
+// Output:
+// body {
+//   line-height: 21px;
+//   line-height: 2.1rem;
+// }
+
+// rem fallback mixins for all css property
+@function parseInt($n) { /* 2 */
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+  $px : (); /* 3 */
+  $rem: (); /* 3 */
+
+  @each $value in $values { /* 4 */
+
+    @if $value == 0 or $value == auto { /* 5 */
+      $px : append($px , $value);
+      $rem: append($rem, $value);
+    }
+
+    @else {
+      $unit: unit($value);    /* 6 */
+      $val: parseInt($value); /* 6 */
+
+      @if $unit == "px" {  /* 7 */
+        $px : append($px,  $value);
+        $rem: append($rem, ($val / 10 + rem));
+      }
+
+      @if $unit == "rem" { /* 7 */
+        $px : append($px,  ($val * 10 + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if $px == $rem {     /* 8 */
+    #{$property}: $px;  /* 9 */
+  } @else {
+    #{$property}: $px;  /* 9 */
+    #{$property}: $rem; /* 9 */
+  }
+}
+
+
+//[13]. set css on anchor links
+@mixin hoverActiveFocus {
+    &:hover, &:active, &:focus {
+        @content;
+    }
+}
+
+// uses
+a {
+    @include hoverActiveFocus {
+        color: red;
+        text-decoration:underline;
+    }
+}
+
+//[14]. box shadow mixins
+
+// function
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+// uses
+/* @include box-shadow(1px,1px,1px,0, #fff, true); */
+
+//[15]. aspect ratio mixins
+// function
+@mixin fluid-aspect($ratio: 1 1, $selector: "> :first-child") {
+  $selector: unquote($selector);
+
+  padding-bottom: percentage(nth($ratio, 2) / nth($ratio, 1));
+  position: relative;
+
+  #{$selector} {
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+// uses
+
+// ex:1
+// ----
+// .my-container {
+//     @include fluid-aspect(16 9);
+// }
+
+// Rendered as CSS:
+// -----------------
+// .my-container {
+//     padding-bottom: 56.25%;
+//     position: relative;
+// }
+
+// .my-container > :first-child {
+//     left: 0;
+//     height: 100%;
+//     position: absolute;
+//     top: 0;
+//     width: 100%;
+// }
+
+// ex:2
+// -----
+// .my-container {
+//     @include fluid-aspect(4 3, iframe);
+// }
+
+// Rendered as CSS:
+// -----------------
+// .my-container {
+//     padding-bottom: 75%;
+//     position: relative;
+// }
+
+// .my-container iframe {
+//     left: 0;
+//     height: 100%;
+//     position: absolute;
+//     top: 0;
+//     width: 100%;
+// }
+
+// ex:3
+// -----
+// .my-container {
+//     @include fluid-aspect(5 3, "&--fluid");
+// }
+// Rendered as CSS:
+// -----------------
+// .my-container {
+//     padding-bottom: 60%;
+//     position: relative;
+// }
+
+// .my-container--fluid {
+//     left: 0;
+//     height: 100%;
+//     position: absolute;
+//     top: 0;
+//     width: 100%;
+// }
+
+// [16]. Fluid espect ratio mixins
+//refer this link for better understand :  http://voormedia.com/blog/2012/11/responsive-background-images-with-fixed-or-fluid-aspect-ratios
+/* Calculate fluid ratio based on two dimensions (width/height) */
+@mixin fluid-ratio($large-size, $small-size) {
+  $width-large: nth($large-size, 1);
+  $width-small: nth($small-size, 1);
+  $height-large: nth($large-size, 2);
+  $height-small: nth($small-size, 2);
+  $slope: ($height-large - $height-small) / ($width-large - $width-small);
+  $height: $height-small - $width-small * $slope;
+
+  padding-top: $slope * 100%;
+  height: $height;
+
+  background-size: cover;
+  -moz-background-size: cover;  /* Firefox 3.6 */
+  background-position: center;  /* Internet Explorer 7/8 */
+}
+//uses:
+// figure.fluidratio {
+//   /* This element will have fluid ratio from 4:1 at 800px to 2:1 at 300px. */
+//   @include fluid-ratio(800px 200px, 300px 150px);
+
+//   background-image: url(http://voormedia.com/examples/amsterdam.jpg);
+// }
+
+//[17]. placehoder mixins
+// function
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+// uses
+// @include input-placeholder {
+//         color: $grey;
+// }
+
+//[18]. Pseudo mixins
+//When using ::before and ::after you'll always need these three, so we're saving two lines of code every time you use this.
+// function
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+// uses
+div::after {
+    @include pseudo;
+}
+
+//[19]. tringle mixins
+// function
+@mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
+    @include pseudo($pos: $position);
+    width: 0;
+    height: 0;
+    @if $round {
+        border-radius: 3px;
+    }
+    @if $direction == down {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-top: $size solid $color;
+        margin-top: 0 - round( $size / 2.5 );
+    } @else if $direction == up {
+        border-left: $size solid transparent;
+        border-right: $size solid transparent;
+        border-bottom: $size solid $color;
+        margin-bottom: 0 - round( $size / 2.5 );
+    } @else if $direction == right {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-left: $size solid $color;
+        margin-right: -$size;
+    } @else if  $direction == left {
+        border-top: $size solid transparent;
+        border-bottom: $size solid transparent;
+        border-right: $size solid $color;
+        margin-left: -$size;
+    }
+}
+// uses
+// @include css-triangle (#fff, "up", 10px, absolute, true);
+
+
+//[20]. tringle mixins WITH BORDER
+@mixin triangle($size, $color, $direction) {
+    height: 0;
+    width: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: $size / 2;
+
+    @if $direction == up {
+      border-bottom-color: $color;
+    } @else if $direction == right {
+      border-left-color:   $color;
+
+    } @else if $direction == down {
+      border-top-color:    $color;
+
+    } @else if $direction == left {
+      border-right-color:  $color;
+    }
+}
+
+
+@mixin bordered-triangle($size, $border-width, $color, $border-color, $direction, $alt: false) {
+  $back-size: $size + ($border-width * 2);
+  position: relative;
+
+  min-width: $size;
+  min-height: $size;
+
+  &:after,
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &:after {
+     @include triangle($size, $color, $direction);
+  }
+
+  &:before {
+    @include triangle($back-size, $border-color, $direction);
+    $mid-border-width: ($border-width / 2);
+    $border-width-and-mid: $border-width + $mid-border-width;
+
+    @if ($alt == true) {
+      $mid-border-width: 0;
+      $border-width-and-mid: $border-width * 2;
+    }
+
+    @if ($direction == up) or ($direction == down) {
+      margin-left: - $border-width;
+
+      @if ($direction == down) {
+        margin-top: -$mid-border-width;
+      } @else {
+        margin-top: - $border-width-and-mid;
+      }
+
+    } @else if ($direction == right) or ($direction == left) {
+      margin-top: - $border-width;
+
+      @if ($direction == right) {
+        margin-left: - $mid-border-width;
+      } @else {
+        margin-left: - $border-width-and-mid;
+      }
+    }
+  }
+
+}
+
+// Usage
+// span.bordered-triangle-top {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, up);
+// }
+
+// span.bordered-triangle-right {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, right);
+// }
+
+// span.bordered-triangle-bottom {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, down);
+// }
+
+// span.bordered-triangle-left {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, left);
+// }
+
+
+// strong.bordered-triangle-top {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, up, true);
+// }
+
+// strong.bordered-triangle-right {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, right, true);
+// }
+
+// strong.bordered-triangle-bottom {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, down, true);
+// }
+
+// strong.bordered-triangle-left {
+//   @include bordered-triangle(30px, 2px, #CCC, #666, left, true);
+// }
+
+//[21]. calc mixins
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+//uses
+//div {  @include calc( width, '100% - 2px') }
+
+
+//[22]. tranform mixins
+// Browser Prefixes
+@mixin transform($transforms) {
+  -webkit-transform: $transforms;
+  -moz-transform: $transforms;
+  -ms-transform: $transforms;
+  transform: $transforms;
+}
+
+// Rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// Scale
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+
+// Translate
+@mixin translate ($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+// Skew
+@mixin skew ($x, $y) {
+  @include transform(skew(#{$x}deg, #{$y}deg));
+}
+
+// Transform Origin
+@mixin transform-origin ($origin) {
+      -webkit-transform-origin: $origin;
+      -moz-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+//uses:
+// @include transform(rotate(-135deg));
+// @include transform(skew(-10deg, -10deg));
+// @include transform-origin(top left);
+// @include transform(translateY(-50%));
+// @include transform(scale(2));
+
+//[23]. Transitions mixins
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+//uses
+// div {
+// @include transition(color .3s ease);
+// }
+
+
+// [24]. appearance mixins
+@mixin x-appearance ($value) {
+	-webkit-appearance: $value;
+	   -moz-appearance: $value;
+	        appearance: $value;
+}
+//uses
+/*selector {
+  @include x-appearance(button);
+}*/
